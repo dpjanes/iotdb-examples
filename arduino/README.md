@@ -62,21 +62,25 @@ You'll need to breadboard components as follows (on an Arduino Uno)
 * Digital Pin 4: Pushbutton
 
 ### Flash LEDs (1)
-[Video](https://www.youtube.com/watch?v=eeyOBpH0CwA)
+[Video](https://www.youtube.com/watch?v=eeyOBpH0CwA) 
+[Code](arduino_1.js)
 
     node arduino_1
 
 ### Flash LEDs (2)
+[Code](arduino_2.js)
 
     node arduino_2
 
 ### Control LEDs with Potentiometer
-[Video](https://www.youtube.com/watch?v=Kd-7FSwtyzo)
+[Video](https://www.youtube.com/watch?v=Kd-7FSwtyzo) 
+[Code](arduino_3.js)
 
     node arduino_3
 
 ### Control LEDs with Potentiometer and Switch
-[Video](https://www.youtube.com/watch?v=wBGJxara84E)
+[Video](https://www.youtube.com/watch?v=wBGJxara84E) 
+[Code](arduino_4.js)
 
     node arduino_4
 
