@@ -5,26 +5,17 @@
  *  IOTDB
  *  2014-04-23
  *
- *  Demonstrate talking to a Fermata device
- *  Analog input and output
+ *  Set the brightness of the light based on
+ *  the potentiometer. When a button is pressed,
+ *  change the LED
  *
  *  Make sure to do the setup
  */
 
 "use strict";
 
-var assert = require("assert")
-var iotdb = require("iotdb")
-var _ = iotdb._
 var common = require("./common")
-
-var iot = new iotdb.IOT({
-    "auto_load_drivers" : true,
-    "auto_iotdb_device_get" : false,
-    "auto_iotdb_device_create" : false
-});
-
-iot.on_register_things(common.register_things)
+var iot = common.make_iot()
 
 var brightness = 0
 var use_blue = true

@@ -25,12 +25,25 @@
 "use strict";
 
 var assert = require("assert")
+var iotdb = require("iotdb")
 
 exports.TAG_SWITCH = "switch"
 exports.TAG_POTENTIOMETER = "potentiometer"
 exports.TAG_LED = "led"
 exports.TAG_LED_1 = "led_1"
 exports.TAG_LED_2 = "led_2"
+
+exports.make_iot = function() {
+    var iot = new iotdb.IOT({
+        "auto_load_drivers" : true,
+        "auto_iotdb_device_get" : false,
+        "auto_iotdb_device_create" : false
+    });
+
+    iot.on_register_things(exports.register_things)
+
+    return iot;
+}
 
 exports.register_things = function(iot) {
     // make sure to do (for whatever your TTY is)

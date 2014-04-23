@@ -1,5 +1,5 @@
 /*
- *  arduino_2.js
+ *  arduino_1.js
  *
  *  David Janes
  *  IOTDB
@@ -7,23 +7,13 @@
  *
  *  Flash LEDs on and off
  *
- *  Make sure to do the setup
+ *  Make sure to do the setup!
  */
 
 "use strict";
 
-var assert = require("assert")
-var iotdb = require("iotdb")
-var _ = iotdb._
 var common = require("./common")
-
-var iot = new iotdb.IOT({
-    "auto_load_drivers" : true,
-    "auto_iotdb_device_get" : false,
-    "auto_iotdb_device_create" : false
-});
-
-iot.on_register_things(common.register_things)
+var iot = common.make_iot()
 
 iot.on_thing_with_tag(common.TAG_LED, function(iot, thing) {
     var state = true;
