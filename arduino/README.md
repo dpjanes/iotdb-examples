@@ -51,7 +51,7 @@ This only has to be done once per computer
 
 Substituting whatever your real TTY is
 
-## Run sample programs
+## Run sample programs (Arduino)
 
 These are all really short. The common code is in <code>common.js</code>.
 You'll need to breadboard components as follows (on an Arduino Uno)
@@ -84,3 +84,10 @@ You'll need to breadboard components as follows (on an Arduino Uno)
 
     node arduino_4
 
+## Run sample programs (Firmata)
+
+The **Firmata** programs (as opposed to the **arduino_** programs)
+use proper IOTDB semantic models.
+
+Unlike the Arduino examples, we don't require you to have an IOTDB.org
+account for these
