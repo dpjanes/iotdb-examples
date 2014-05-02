@@ -6,6 +6,7 @@
  *  2014-04-29
  *
  *  Grove I2C Color Senor
+ *  NOT FINISHED
  */
 
 #define COLOR_SENSOR_ADDR  0x39//the I2C address for the color sensor 
@@ -153,6 +154,13 @@ void gcs_readRGB2()
     gcs_rgba[3]=gcs_readingdata[7]*256+gcs_readingdata[6];
 
     Firmata.sendSysex(10, sizeof gcs_rgba, (byte*) gcs_rgba);
+}
+
+void gcs_param(String key, String value)
+{
+    if (key == k_sysex) {
+    } else if (key == k_pin) {
+    }
 }
 
 void gcs_enable()

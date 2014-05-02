@@ -1,5 +1,6 @@
+// vi:syntax=c
 /*
- *  Firmata.ino
+ *  IOTDBFirmata.ino
  *
  *  David Janes
  *  IOTDB.org
@@ -9,7 +10,8 @@
  */
 
 // #define USE_GCS              // groove color sensor
-// #define USE_DHT                 // temperature/humidity sensor
+#define USE_DHT                 // temperature/humidity sensor
+#define USE_TAC                 // three-axis compass
 #define USE_CLED       // chainable led
 
 /*
@@ -49,12 +51,19 @@
 #include <Wire.h>
 #include <Firmata.h>
 
+String k_sysex = "sysex";
+String k_pin = "pin";
+
 #if defined(USE_GCS)
 #include "include_gcs.h"
 #endif
 #if defined(USE_DHT)
 #include <DHT.h>
 #include "include_dht.h"
+#endif
+#if defined(USE_TAC)
+#include <HMC5883L.h>
+#include "include_tac.h"
 #endif
 #if defined(USE_CLED)
 #include <ChainableLED.h>
@@ -540,6 +549,11 @@ void sysexCallback(byte command, byte argc, byte *argv)
       }
       Firmata.write(END_SYSEX);
       break;
+    default:
+#if defined(USE_CLED)
+        cled_sysex_callback(command, argc, argv);
+#endif
+        break;
   }
 }
 
@@ -611,20 +625,53 @@ void systemResetCallback()
   */
 }
 
-void commandCallback(char *command)
+String extension_name = "";
+
+void commandCallback(char *_command)
 {
-    if (0) {
+    String command = _command;
+
+    if (command.length() == 0) {
+        if (extension_name == 0) {
+            return;
+        }
+
 #if defined(USE_GCS)
-    } else if (strcmp(command, "+gcs") == 0) {
-        gcs_enable();
+       if (extension_name  == "gcs") gcs_enable();
 #endif
 #if defined(USE_DHT)
-    } else if (strcmp(command, "+dht") == 0) {
-        dht_enable();
+       if (extension_name == "dht") dht_enable();
+#endif
+#if defined(USE_TAC)
+       if (extension_name == "tac") tac_enable();
 #endif
 #if defined(USE_CLED)
-    } else if (strcmp(command, "+dht") == 0) {
-        dht_enable();
+       if (extension_name == "cled") cled_enable();
+       digitalWrite(3, HIGH);
+#endif
+        extension_name = "";
+    } else if (extension_name.length() == 0) {
+        extension_name = command;
+    } else {
+        int equalx = command.indexOf('=');
+        if (equalx == -1) {
+            equalx = command.length() - 1;
+        }
+        
+        String key = command.substring(0, equalx);
+        String value = command.substring(equalx + 1);
+
+#if defined(USE_GCS)
+       if (extension_name == "gcs") gcs_param(key, value);
+#endif
+#if defined(USE_DHT)
+       if (extension_name == "dht") dht_param(key, value);
+#endif
+#if defined(USE_TAC)
+       if (extension_name == "tac") tac_param(key, value);
+#endif
+#if defined(USE_CLED)
+       if (extension_name == "cled") cled_param(key, value);
 #endif
     }
 }
@@ -637,8 +684,11 @@ void setup()
 #if defined(USE_DHT)
     dht_setup();
 #endif
+#if defined(USE_TAC)
+    tac_setup();
+#endif
 #if defined(USE_CLED)
-    dht_setup();
+    cled_setup();
 #endif
 
   Firmata.setFirmwareVersion(FIRMATA_MAJOR_VERSION, FIRMATA_MINOR_VERSION);
@@ -702,7 +752,10 @@ void loop()
 #if defined(USE_DHT)
     dht_loop();
 #endif
+#if defined(USE_TAC)
+    tac_loop();
+#endif
 #if defined(USE_CLED)
-    dht_loop();
+    cled_loop();
 #endif
 }
