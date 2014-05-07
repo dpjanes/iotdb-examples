@@ -20,7 +20,7 @@ exports.Model = iotdb.make_model('FirmataOn')
     .product("http://www.seeedstudio.com/depot/Grove-Buzzer-p-768.html")
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.make_boolean(":on")
+        attribute.control_boolean(":on")
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

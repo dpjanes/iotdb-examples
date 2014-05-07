@@ -42,7 +42,7 @@ var on_weather = function(weather, attributes) {
         var last = last_weather.get("conditions")
         var current = weather.get("conditions")
         if (last != current) {
-            iot.tweet(iot.format("The weather is now {{ conditions }}", weather))
+            iot.twitter.send(iot.format("The weather is now {{ conditions }}", weather))
         }
 
         var last = last_weather.get("temperature")

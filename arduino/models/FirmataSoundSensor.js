@@ -15,10 +15,7 @@ exports.Model = iotdb.make_model('FirmataSoundSensor')
     .product("http://www.seeedstudio.com/depot/Grove-Sound-Sensor-p-752.html")
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.make_number(":value")
-            .minimum(0)
-            .minimum(1)
-            .measuring(":sound")
+        attribute.value_unit(":environment.sound", "value")
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

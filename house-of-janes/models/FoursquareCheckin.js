@@ -12,19 +12,23 @@ var iotdb = require("iotdb")
 
 exports.Model = iotdb.make_model('FoursquareCheckin')
     .attribute(
-        iotdb.make_string()
-            .code("where")
-            // .format(":iri")
-            .purpose("wikipedia:check-in")
+        iotdb.value_iri("wikipedia:check-in", "where")
     )
-    .attribute(iotdb.make_string("name"))
     .attribute(
-        iotdb.make_string("timestamp")
-            .format("datetime")
+        iotdb.value_string(":name")
     )
-    .attribute(iotdb.make_number("latitude"))
-    .attribute(iotdb.make_number("longitude"))
-    .attribute(iotdb.make_boolean().code("fresh"))
+    .attribute(
+        iotdb.value_datetime(":timestamp")
+    )
+    .attribute(
+        iotdb.value_number(":latitude")
+    )
+    .attribute(
+        iotdb.value_number(":longitude")
+    )
+    .attribute(
+        iotdb.value_boolean(":flag", "fresh")
+    )
     .driver_identity(":feed")
     .driver_in(function(paramd) {
         // console.log(paramd.driverd)

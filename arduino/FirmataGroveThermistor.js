@@ -38,10 +38,7 @@ iot.on_register_things(function() {
 })
 
 iot.on_thing_with_model("FirmataGroveThermistor", function(iot, thing) {
-    thing.on("temperature_c", function(thing, attribute, value) {
+    thing.on("temperature", function(thing, attribute, value) {
         console.log("+ temperature (C)", value)
-    })
-    thing.on("temperature_f", function(thing, attribute, value) {
-        console.log("+ temperature (F)", value)
     })
 })

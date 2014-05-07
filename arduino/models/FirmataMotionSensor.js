@@ -15,8 +15,7 @@ exports.Model = iotdb.make_model('FirmataMotionSensor')
     .product("http://www.seeedstudio.com/depot/Grove-PIR-Motion-Sensor-p-802.html")
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.make_boolean(":value")
-            .measuring(":presence.motion")
+        attribute.value_boolean(":environment.motion", "value")
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

@@ -17,12 +17,10 @@ exports.Model = iotdb.make_model('FirmataLightDimmer')
     .product("http://www.seeedstudio.com/depot/Grove-Green-LED-p-1144.html")
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.make_boolean(":on")
+        attribute.control_boolean(":on")
     )
     .attribute(
-        attribute.make_number(":brightness")
-            .minimum(0)
-            .minimum(1)
+        attribute.control_unit(":brightness")
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

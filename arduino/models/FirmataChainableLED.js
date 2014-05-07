@@ -13,15 +13,14 @@ var iotdb = require("iotdb")
 exports.Model = iotdb.make_model('FirmataChainableLED')
     .product("http://www.seeedstudio.com/depot/Grove-Chainable-RGB-LED-p-850.html")
     .attribute(
-        iotdb.make_string(":color")
-            .format(":color")
+        iotdb.control_color(":color")
         )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {
         paramd.initd["pins"] = "rgb:pin=7,mode=sysex-output-int8,extension=cled"
     })
     .driver_in(function(paramd) {
-        console.log(paramd.driverd)
+        // console.log(paramd.driverd)
     })
     .driver_out(function(paramd) {
         if (paramd.thingd.color !== undefined) {

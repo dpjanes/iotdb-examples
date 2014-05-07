@@ -14,23 +14,18 @@
 var iotdb = require("iotdb")
 
 exports.Model = iotdb.make_model('USGSEarthquake')
-    .attribute(iotdb.make_string("name"))
+    .attribute(iotdb.value_string("name"))
     .attribute(
-        iotdb.make_string()
-            .code("address")
-            .purpose("schema:address")
+        iotdb.value_string("scheme:address")
     )
     .attribute(
-        iotdb.make_string("timestamp")
-            .format("datetime")
+        iotdb.value_datetime(":timestamp")
     )
-    .attribute(iotdb.make_number("latitude"))
-    .attribute(iotdb.make_number("longitude"))
-    .attribute(iotdb.make_number("elevation"))
+    .attribute(iotdb.value_number(":latitude"))
+    .attribute(iotdb.value_number(":longitude"))
+    .attribute(iotdb.value_number(":elevation"))
     .attribute(
-        iotdb.make_number("magnitude")
-            .purpose(":energy.magnitude.richter")
-            .minimum(0)
+        iotdb.value_number(":energy.magnitude.richter", "magnitude")
     )
     .driver_identity("iot-driver:feed")
     .driver_setup(function(paramd) {

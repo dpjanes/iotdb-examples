@@ -14,7 +14,7 @@ var attribute = iotdb.attribute
 exports.Model = iotdb.make_model('FirmataOutputBoolean')
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.make_boolean(":value")
+        attribute.control_boolean(":value")
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

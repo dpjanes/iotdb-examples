@@ -12,15 +12,15 @@ var iotdb = require("iotdb")
 
 exports.Model = iotdb.make_model('TWNCurrentWeather')
     .attribute( 
-        iotdb.make_value("temperature")
+        iotdb.value_number(":temperature")
             .unit(":temperature.si.celsius")
     )
     .attribute( 
-        iotdb.make_value("humidity")
+        iotdb.value_number(":humidity")
             .unit(":math.fraction.percent")
     )
     .attribute( 
-        iotdb.make_string("conditions")
+        iotdb.value_string(":message", "conditions")
     )
     .driver_identity(":feed")
     .driver_setup(function(paramd) {
