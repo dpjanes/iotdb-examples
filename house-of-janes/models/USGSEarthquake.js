@@ -16,7 +16,7 @@ var iotdb = require("iotdb")
 exports.Model = iotdb.make_model('USGSEarthquake')
     .attribute(iotdb.value_string("name"))
     .attribute(
-        iotdb.value_string("scheme:address")
+        iotdb.value_string("schema:address", "address")
     )
     .attribute(
         iotdb.value_datetime(":timestamp")

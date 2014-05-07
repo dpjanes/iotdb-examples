@@ -16,4 +16,4 @@
 var weather = require("./weather")
 var foursquare = require("./foursquare")
 var earthquake = require("./earthquake")
-// var dht11 = require("./dht11")
+var dht11 = require("./dht11")

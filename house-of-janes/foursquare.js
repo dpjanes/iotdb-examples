@@ -35,6 +35,7 @@ iot.on_register_things(function() {
 
 var on_checkin = function(checkin, attributes) {
     if (checkin.get("fresh")) {
+        globald.distance = undefined
         shared.last_checkin = checkin.freeze()
         var message = iot.format(
             "Looks like {{ house.name_is }} out. I saw him at {{ name }}\n{{ where }}",

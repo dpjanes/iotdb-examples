@@ -37,7 +37,7 @@ var points2distance = function (lat1, lon1, lat2, lon2) {
     return  Math.round(d)
 }
 
-var distance = function(t1, t2) {
+var compute_distance = function(t1, t2) {
     return points2distance(
         t1.get(":latitude"),
         t1.get(":longitude"),
@@ -46,15 +46,24 @@ var distance = function(t1, t2) {
     )
 }
 
-iot.on_thing_with_model("USGSEarthquake", function(iot, thing) {
-    thing.on_change(function(earthquake, attributes) {
-        var format = "Uh oh, Earthquake! {{ address }}"
-        if (shared.last_checkin) {
-            globald['distance'] = distance(shared.last_checkin, earthquake)
-            format += ". That's only {{ distance }}km from {{ house.possessive }} last checkin!"
+var on_earthquake = function(earthquake) {
+    var format = "Uh oh, Earthquake! {{ address }}"
+    if (shared.last_checkin) {
+        var distance = compute_distance(shared.last_checkin, earthquake)
+        if ((globald.distance !== undefined) && (globald.distance < distance))  {
+            return
         }
-        var message = iot.format(format, earthquake, globald)
-        iot.twitter.send(message)
-        console.log("+ changes!", earthquake.stated, message)
-    })
+
+        format += ". That's only {{ distance }}km from {{ house.possessive }} last checkin!"
+        globald.distance = distance
+    }
+
+    var message = iot.format(format, earthquake, globald)
+    iot.twitter.send(message)
+
+    console.log("+ changes!", earthquake.stated, message)
+}
+
+iot.on_thing_with_model("USGSEarthquake", function(iot, thing) {
+    thing.on_change(on_earthquake)
 })
