@@ -21,6 +21,14 @@ exports.Model = iotdb.make_model('FirmataDHT11')
         iotdb.value_number("temperature")
             .unit(":temperature.si.celsius")
     )
+    .initializer(
+        iotdb.value_number("pin")
+            .description("the digital pin the DHT11 is connected to")
+    )
+    .initializer(
+        iotdb.value_number("api")
+            .description("the serial port the Arduino is connected to")
+    )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {
         paramd.initd["pins"] = "ht:pin=2,mode=sysex-input-float,extension=dht"
