@@ -59,10 +59,10 @@ var temperature2color = function(temperature)  {
 }
 
 iot.on_thing_with_model("FirmataDHT11", function(iot, thing) {
-    thing.on('temperature', function(thing, attribute, value) {
+    thing.on(':temperature', function(thing, attribute, value) {
         iot.things()
             .with_tag("FirmataChainableLED")
-            .set("color", temperature2color(value))
+            .set(":color", temperature2color(value))
 
         console.log("+ temperature", value)
     })

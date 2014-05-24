@@ -1,25 +1,25 @@
 /*
- *  HueLight.js
+ *  HuueLight.js
  *
  *  David Janes
  *  IOTDB
- *  2014-04-29
- *
- *  Testing model for HueLight
+ *  2014-01-26
  */
-
-"use strict"
 
 var iotdb = require("iotdb")
 
 exports.Model = iotdb.make_model('HueLight')
-    .driver_identity(":hue")
+    .facet("lighting")
+    .name("Hue Light")
+    .description("Philips Hue colored light")
     .attribute(
-        iotdb.make_boolean(":on")
+        iotdb.make_boolean("on").control()
+            .description("turn the light on or off")
     )
     .attribute(
-        iotdb.make_string(":color")
-            .format(":color")
+        iotdb.make_color("color").control()
+            .description("set the color of the light")
     )
+    .driver_identity("iot-driver:hue")
     .make()
     ;

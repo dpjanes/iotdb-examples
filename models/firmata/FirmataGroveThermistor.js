@@ -16,7 +16,7 @@ exports.Model = iotdb.make_model('FirmataGroveThermistor')
     .help("make sure to set initd.pin (analog)")
     .attribute(
         iotdb.make_number(":temperature")
-            .value()
+            .reading()
             .unit(":temperature.si.celsius")
     )
     .driver_identity(":firmata")

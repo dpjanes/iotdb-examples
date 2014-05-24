@@ -17,7 +17,8 @@ exports.Model = iotdb.make_model('FirmataSwitch')
     .product("http://www.seeedstudio.com/depot/Grove-SwitchP-p-1252.html")
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.value_boolean(":on", "value")
+        attribute.make_boolean(":on", "value")
+            .value()
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

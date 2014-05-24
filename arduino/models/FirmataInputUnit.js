@@ -15,7 +15,8 @@ exports.Model = iotdb.make_model('FirmataInputUnit')
     .product("http://www.seeedstudio.com/depot/Grove-Rotary-Angle-Sensor-p-770.html")
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.value_unit(":value")
+        attribute.make_unit(":value")
+            .value()
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

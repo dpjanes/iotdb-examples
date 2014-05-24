@@ -9,15 +9,17 @@
 var iotdb = require("iotdb")
 
 exports.Model = iotdb.make_model('HueLight')
-    .facet("lighting")
+    .facet(":lighting")
     .name("Hue Light")
     .description("Philips Hue colored light")
     .attribute(
-        iotdb.make_boolean("on").control()
+        iotdb.make_boolean(":on")
+            .control()
             .description("turn the light on or off")
     )
     .attribute(
-        iotdb.make_color("color").control()
+        iotdb.make_color(":color")
+            .control()
             .description("set the color of the light")
     )
     .driver_identity("iot-driver:hue")

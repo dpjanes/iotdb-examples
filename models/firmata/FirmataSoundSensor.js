@@ -16,7 +16,7 @@ exports.Model = iotdb.make_model('FirmataSoundSensor')
     .help("make sure to set initd.pin")
     .attribute(
         attribute.make_unit(":sound")
-            .value()
+            .reading()
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

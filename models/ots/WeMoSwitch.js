@@ -9,15 +9,16 @@
 var iotdb = require("iotdb")
 
 exports.Model = iotdb.make_model('WeMoSwitch')
-    .facet("lighting")
+    .facet(":lighting")
     .product("http://www.belkin.com/us/F7C027-Belkin/p/P-F7C027/")
     .name("WeMo Switch")
     .description("Belkin WeMo Switch")
     .attribute(
-        iotdb.make_boolean("on").control()
+        iotdb.make_boolean(":on")
+            .control()
             .description("turn the WeMo on or off")
     )
-    .attribute_value("on")
+    .make_attribute_reading("on", "on-value")
     .driver_identity({
         "driver_iri": "iot-driver:upnp",
         "deviceType": "urn:Belkin:device:controllee:1"
@@ -31,10 +32,8 @@ exports.Model = iotdb.make_model('WeMoSwitch')
         var d = paramd.driverd['urn:Belkin:service:basicevent:1']
         if (d) {
             if (d.BinaryState == '0') {
-                paramd.thingd['on'] = false;
                 paramd.thingd['on-value'] = false;
             } else if (d.BinaryState == '1') {
-                paramd.thingd['on'] = true;
                 paramd.thingd['on-value'] = true;
             }
         }

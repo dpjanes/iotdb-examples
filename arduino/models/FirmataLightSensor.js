@@ -15,7 +15,8 @@ exports.Model = iotdb.make_model('FirmataLightSensor')
     .product("http://www.seeedstudio.com/depot/Grove-Light-Sensor-p-746.html")
     .help("make sure to set initd.pin")
     .attribute(
-        attribute.value_unit(":environment.light", "value")
+        attribute.make_unit(":light")
+            .value()
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {

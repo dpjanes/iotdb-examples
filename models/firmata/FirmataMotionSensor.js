@@ -16,7 +16,7 @@ exports.Model = iotdb.make_model('FirmataMotionSensor')
     .help("make sure to set initd.pin")
     .attribute(
         attribute.make_boolean(":motion")
-            .value()
+            .reading()
     )
     .driver_identity(":firmata")
     .driver_setup(function(paramd) {
