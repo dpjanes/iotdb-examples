@@ -35,9 +35,13 @@ exports.TAG_LED_2 = "led_2"
 
 exports.make_iot = function() {
     var iot = new iotdb.IOT({
-        "auto_load_drivers" : true,
-        "auto_iotdb_device_get" : false,
-        "auto_iotdb_device_create" : false
+        load_drivers: true,
+        iotdb_device_get: false,
+        iotdb_device_create: false,
+        discover: false,
+        model_path: [
+            "$IOTDB_PROJECT/../models/abstract"
+        ]
     });
 
     iot.on_register_things(exports.register_things)

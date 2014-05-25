@@ -17,10 +17,14 @@ var assert = require("assert")
 var iotdb = require("iotdb")
 
 var iot = new iotdb.IOT({
-    "auto_load_models" : true,
-    "auto_load_drivers" : true,
-    "auto_iotdb_device_get" : false,
-    "auto_iotdb_device_create" : false
+    load_models: true,
+    load_drivers: true,
+    iotdb_device_get: false,
+    iotdb_device_create: false,
+    discover: false,
+    model_path: [
+        "$IOTDB_PROJECT/../models/firmata"
+    ]
 });
 
 iot.on_register_things(function() {

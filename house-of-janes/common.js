@@ -23,10 +23,14 @@ exports.globald = {
 
 exports.iot = new iotdb.IOT({
     twitter: true,
-    auto_load_models: true,
-    auto_load_drivers: true,
-    auto_iotdb_device_get: false,
-    auto_iotdb_device_create: false,
+    load_models: true,
+    load_drivers: true,
+    iotdb_device_get: false,
+    iotdb_device_create: false,
+    models_path: [
+        "$IOTDB_PROJECT/../models/feeds",
+        "$IOTDB_PROJECT/../models/firmata"
+    ], 
 });
 
 exports.shared = {

@@ -12,6 +12,8 @@
  *  - have an IOTDB account
  *  - do: 'iotdb-control update-project' - make sure to set your username
  *  - do: 'iotdb-control oauth-iotdb' 
+ *  - make a room called Kitchen in Places
+ *  - make sure to assign Things/Devices in IOTDB to the Kitchen
  */
 
 "use strict";
@@ -40,6 +42,7 @@ iot.on_register_things(function(iot) {
 iot.on_things(function(iot, things) {
     var count = 0;
     setInterval(function() {
+        console.log("+ chaning kitchen lights", count % 2 ? "on" : "off")
         things.with_room("Kitchen").set(':on', count++ % 2)
     }, 1000)
 
