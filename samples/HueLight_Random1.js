@@ -29,7 +29,7 @@ iot.on_register_models(function() {
     iot.register_model(HueLight);
 })
 iot.on_thing(function(iot, thing) {
-    console.log("+ discovered", thing.code, thing.device_id())
+    console.log("+ discovered", thing.code, thing.thing_id())
 
     var colors = iotdb.helpers.keys(iotdb.helpers.colord);
 
