@@ -27,6 +27,9 @@ iot.on_thing(function(iot, thing) {
     thing.on('on-value', function() {
         console.log("+ 'on-value' changed", thing.get('on-value'));
     });
+    thing.on_change(function() {
+        console.log("+ state", thing.state())
+    })
 
     setInterval(function() {
         thing.set('on', !thing.get('on'));
