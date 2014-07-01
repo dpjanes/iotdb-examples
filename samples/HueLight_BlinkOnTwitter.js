@@ -19,7 +19,7 @@ var iotdb = require("iotdb")
 
 var iot = new iotdb.IOT({
     models_path: [
-        "$IOTDB_PROJECT/../models/ots"
+        "$IOTDB_PROJECT/../iotdb-models/ots"
     ],
     load_models: true,
     load_drivers: true,

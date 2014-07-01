@@ -15,7 +15,7 @@
 "use strict";
 
 var iotdb = require("iotdb")
-var AbstractLightSimple = require("../models/abstract/light-simple").Model;
+var AbstractLightSimple = require("../iotdb-models/abstract/light-simple").Model;
 
 var iot = new iotdb.IOT({
     load_models: false,

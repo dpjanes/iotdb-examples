@@ -11,7 +11,7 @@
 "use strict"
 
 var iotdb = require("iotdb")
-var WeMoSwitch = require("../models/ots/WeMoSwitch").Model;
+var WeMoSwitch = require("../iotdb-models/ots/WeMoSwitch").Model;
 
 var iot = new iotdb.IOT({
     load_models: false

@@ -40,7 +40,7 @@ exports.make_iot = function() {
         iotdb_device_create: false,
         discover: false,
         models_path: [
-            "$IOTDB_PROJECT/../models/abstract"
+            "$IOTDB_PROJECT/../iotdb-models/abstract"
         ]
     });
 

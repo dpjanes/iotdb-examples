@@ -23,7 +23,7 @@ var iot = new iotdb.IOT({
     iotdb_device_create: false,
     discover: false,
     models_path: [
-        "$IOTDB_PROJECT/../models/firmata"
+        "$IOTDB_PROJECT/../iotdb-models/firmata"
     ]
 });
 

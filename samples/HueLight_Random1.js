@@ -15,7 +15,7 @@
 
 var iotdb = require("iotdb")
 
-var HueLight = require("../models/ots/HueLight").Model;
+var HueLight = require("../iotdb-models/ots/HueLight").Model;
 
 var iot = new iotdb.IOT({
     load_models: false,

@@ -26,7 +26,7 @@ var iot = new iotdb.IOT({
     load_drivers: true,
     load_models: true,
     models_path: [
-        "$IOTDB_PROJECT/../models/abstract"
+        "$IOTDB_PROJECT/../iotdb-models/abstract"
     ],
     iotdb_device_get: true,
     iotdb_device_create: true,

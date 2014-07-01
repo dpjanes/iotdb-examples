@@ -28,7 +28,7 @@ exports.iot = new iotdb.IOT({
     iotdb_device_get: false,
     iotdb_device_create: false,
     models_path: [
-        "$IOTDB_PROJECT/../models/feeds",
+        "$IOTDB_PROJECT/../iotdb-models/feeds",
         "$IOTDB_PROJECT/../models/firmata"
     ], 
 });
