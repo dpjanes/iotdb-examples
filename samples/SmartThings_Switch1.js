@@ -7,6 +7,10 @@
  *
  *  Talk to a SmartThings switch
  *  Using a proper SmartThings enabled class
+ *
+ *  Note:
+ *  SmartThings requires quite a bit of setup. See
+ *  https://github.com/dpjanes/iotdb-smartthings
  */
 
 "use strict";
