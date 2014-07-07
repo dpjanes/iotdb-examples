@@ -1,5 +1,5 @@
 /*
- *  smartthings_1.js
+ *  SmartThings_Switch1.js
  *
  *  David Janes
  *  IOTDB
