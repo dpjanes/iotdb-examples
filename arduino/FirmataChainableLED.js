@@ -36,7 +36,7 @@ iot.on_register_things(function() {
 
     iot.discover({
         model: "FirmataDHT11",
-        driver_iri: ":firmata",
+        driver: ":firmata",
         initd : {
             pin: 2,
             api: arduino_tty
@@ -44,7 +44,7 @@ iot.on_register_things(function() {
     })
     iot.discover({
         model: "FirmataChainableLED",
-        driver_iri: ":firmata",
+        driver: ":firmata",
         initd : {
             tag: "FirmataChainableLED",
             pin: 7,

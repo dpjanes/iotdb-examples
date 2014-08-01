@@ -31,7 +31,7 @@ iot.on_register_things(function() {
 
     iot.discover({
         model: "FirmataLightDimmer",
-        driver_iri: ":firmata",
+        driver: ":firmata",
         initd : {
             api: arduino_tty,
             pin: 5
@@ -39,7 +39,7 @@ iot.on_register_things(function() {
     })
     iot.discover({
         model: "FirmataLightDimmer",
-        driver_iri: ":firmata",
+        driver: ":firmata",
         initd : {
             api: arduino_tty,
             pin: 3

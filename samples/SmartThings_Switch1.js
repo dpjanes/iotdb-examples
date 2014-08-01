@@ -22,7 +22,7 @@ var SmartThingsSwitch = iotdb.make_model('SmartThingsSwitch')
         iotdb.make_boolean("on")
     )
     .driver_identity({
-        driver_iri: "iot-driver:smartthings",
+        driver: "iot-driver:smartthings",
         type: "switch"
     })  
     .driver_out(function(paramd) {

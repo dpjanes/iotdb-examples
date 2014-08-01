@@ -34,7 +34,7 @@ iot.on_register_things(function() {
     } else {
         iot.discover({
             model: "FoursquareCheckin",
-            driver_iri: "iot-driver:feed",
+            driver: "iot-driver:feed",
             initd : {
                 api: foursquare_rss,
                 fresh: false

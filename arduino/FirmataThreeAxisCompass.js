@@ -38,7 +38,7 @@ iot.on_register_things(function() {
 
     iot.discover({
         model: "FirmataThreeAxisCompass",
-        driver_iri: ":firmata",
+        driver: ":firmata",
         initd : {
             pin: 2,
             declination: MAGNETIC_DECLINATION,

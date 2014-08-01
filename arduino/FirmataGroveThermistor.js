@@ -33,7 +33,7 @@ iot.on_register_things(function() {
 
     iot.discover({
         model: "FirmataGroveThermistor",
-        driver_iri: ":firmata",
+        driver: ":firmata",
         initd : {
             api: arduino_tty,
             pin: 1

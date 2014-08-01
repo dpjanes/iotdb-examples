@@ -26,7 +26,7 @@ if (!arduino_tty) {
     iot.on_register_things(function() {
         iot.discover({
             model: "FirmataDHT11",
-            driver_iri: ":firmata",
+            driver: ":firmata",
             initd : {
                 pin: PIN_DHT11,
                 api: arduino_tty

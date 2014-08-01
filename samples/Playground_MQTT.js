@@ -50,7 +50,7 @@ iot.on_register_things(function() {
 
         iot.discover({
             model: MQTTLight,
-            driver_iri: ":mqtt",
+            driver: ":mqtt",
             initd: {
                 mqtt_topic: "iot/" + path + "/#",
                 mqtt_broker: "mqtt.iotdb.org",
