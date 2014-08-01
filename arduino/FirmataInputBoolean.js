@@ -16,54 +16,25 @@
 
 "use strict";
 
-var assert = require("assert")
 var iotdb = require("iotdb")
 
-var iot = new iotdb.IOT({
-    load_models: true,
-    load_drivers: true,
-    iotdb_device_get: false,
-    iotdb_device_create: false,
-    discover: false,
-    models_path: [
-        "$IOTDB_PROJECT/../iotdb-models/firmata"
-    ]
-});
-
-iot.on_register_things(function() {
-    var arduino_tty = iot.cfg_get("arduino_tty")
-    assert.ok(arduino_tty && arduino_tty.length)
-
-    iot.discover({
-        model: "FirmataLightDimmer",
-        driver_iri: ":firmata",
-        initd : {
-            api: arduino_tty,
-            pin: 5
-        }
-    })
-    iot.discover({
-        model: "FirmataLightDimmer",
-        driver_iri: ":firmata",
-        initd : {
-            api: arduino_tty,
-            pin: 3
-        }
-    })
-    iot.discover({
-        model: "FirmataInputBoolean",
-        driver_iri: ":firmata",
-        initd : {
-            api: arduino_tty,
-            pin: 2
-        }
-    })
+var iot = iotdb.iot()
+iot.connect({
+    model: "FirmataLightDimmer",
+    pin: 5
+})
+iot.connect({
+    model: "FirmataLightDimmer",
+    pin: 3
+})
+var input = iot.connect({
+    model: "FirmataInputBoolean",
+    pin: 2
 })
 
-iot.on_thing_with_model("FirmataInputBoolean", function(iot, thing) {
-    thing.on("value", function(thing, attribute, value) {
-        iot.things()
-            .with_model("FirmataLightDimmer")
-            .set("brightness", value)
-    })
+input.on(":value", function(thing, attribute, value) {
+    iot
+        .things()
+        .with_model("FirmataLightDimmer")
+        .set(":brightness", value)
 })

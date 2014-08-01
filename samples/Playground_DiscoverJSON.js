@@ -42,7 +42,7 @@ iot.on_register_things(function(iot) {
 iot.on_things(function(iot, things) {
     var count = 0;
     setInterval(function() {
-        console.log("+ chaning kitchen lights", count % 2 ? "on" : "off")
+        console.log("+ changing kitchen lights", count % 2 ? "on" : "off")
         things.with_room("Kitchen").set(':on', count++ % 2)
     }, 1000)
 

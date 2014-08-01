@@ -10,42 +10,23 @@
  *
  *  The difference between this
  *  and FirmataOutputOn is 'FirmataOutputBoolean'
- *  is controlled by 'value' rather than 'on'
+ *  is controlled by 'value' rather than 'on'. We
+ *  also explicitly set the pin
  */
 
 "use strict";
 
-var assert = require("assert")
 var iotdb = require("iotdb")
 
-var iot = new iotdb.IOT({
-    load_models: true,
-    load_drivers: true,
-    iotdb_device_get: false,
-    iotdb_device_create: false,
-    discover: false,
-    models_path: [
-        "$IOTDB_PROJECT/../iotdb-models/firmata"
-    ]
-});
-
-iot.on_register_things(function() {
-    var arduino_tty = iot.cfg_get("arduino_tty")
-    assert.ok(arduino_tty && arduino_tty.length)
-
-    iot.discover({
+iotdb
+    .iot()
+    .connect({
         model: "FirmataOutputBoolean",
-        driver_iri: ":firmata",
-        initd : {
-            api: arduino_tty,
-            pin: 3
-        }
+        pin: 3
     })
-})
-
-iot.on_thing(function(iot, thing) {
-    var value = 0
-    setInterval(function() {
-        thing.set(':value', value++ % 2)
-    }, 1500)
-})
+    .on_thing(function(thing) {
+        var value = 0
+        setInterval(function() {
+            thing.set(':value', value++ % 2)
+        }, 1500)
+    })
