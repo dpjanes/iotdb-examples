@@ -9,7 +9,8 @@
  *
  *  Make sure to see README
  *
- *  Deeper customization per-model:
+ *  IMPORTANT: run these commands
+ *  
  *  iotdb-control set firmata/firmata-dht11/tty /dev/tty.usbmodem411 --global 
  *  iotdb-control set firmata/firmata-dht11/pin 2
  */

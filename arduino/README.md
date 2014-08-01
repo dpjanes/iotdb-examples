@@ -3,6 +3,14 @@
 There's a number of simple setup steps that need to be done first.
 Also see the documentation (links below)
 
+## Firmata
+
+Firmata **must** be installed on your Arduino Uno first.
+Please use <code>IOTDBFirmata</code> included here. 
+"Normal" Firmata will work except for some of the wonkier
+devices, e.g. chainable LED, DHT11 and other things
+we've compiled in extensions for
+
 ## Machine ID
 Run this once per computer:
 
