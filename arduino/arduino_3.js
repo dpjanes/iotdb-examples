@@ -14,10 +14,14 @@
 "use strict";
 
 var common = require("./common")
-var iot = common.make_iot()
 
-iot.on_thing_with_tag(common.TAG_POTENTIOMETER, function(iot, thing) {
-    thing.on(':value', function(thing, attribute, value) {
-        iot.things().with_tag(common.TAG_LED).set(':value', value)
-    })
+var leds = common.iot
+    .things()
+    .with_tag(common.TAG_LED)
+var pot = common.iot
+    .things()
+    .with_tag(common.TAG_POTENTIOMETER)
+
+pot.on(':value', function(thing, attribute, value) {
+    leds.set(':value', value)
 })

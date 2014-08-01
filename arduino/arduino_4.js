@@ -15,27 +15,30 @@
 "use strict";
 
 var common = require("./common")
-var iot = common.make_iot()
+var iot = common.iot
 
 var brightness = 0
 var use_blue = true
 
 function push() {
+    console.log("+ brightness", brightness, "use_blue", use_blue)
     iot.things().with_tag(common.TAG_LED_1).set(':value', use_blue ? brightness : 0)
     iot.things().with_tag(common.TAG_LED_2).set(':value', use_blue ? 0 : brightness)
 }
 
-iot.on_thing_with_tag(common.TAG_SWITCH, function(iot, thing) {
-    thing.on(':value', function(thing, attribute, value) {
+iot
+    .things()
+    .with_tag(common.TAG_SWITCH)
+    .on(':value', function(thing, attribute, value) {
         if (value) {
             use_blue = !use_blue
         }
         push()
     })
-})
-iot.on_thing_with_tag(common.TAG_POTENTIOMETER, function(iot, thing) {
-    thing.on(':value', function(thing, attribute, value) {
+iot
+    .things()
+    .with_tag(common.TAG_POTENTIOMETER)
+    .on(':value', function(thing, attribute, value) {
         brightness = value
         push()
     })
-})

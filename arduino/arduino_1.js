@@ -13,12 +13,14 @@
 "use strict";
 
 var common = require("./common")
-var iot = common.make_iot()
 
-iot.on_thing_with_tag(common.TAG_LED, function(iot, thing) {
-    var state = true;
-    setInterval(function() {
-        thing.set(':value', state)
-        state = !state;
-    }, 1000)
-})
+common.iot
+    .things()
+    .with_tag(common.TAG_LED)
+    .on_thing(function(thing) {
+        var state = true;
+        setInterval(function() {
+            thing.set(':value', state)
+            state = !state;
+        }, 1000)
+    })

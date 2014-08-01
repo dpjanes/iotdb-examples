@@ -20,11 +20,16 @@
  *  We used a Grove to set all this up - it's 
  *  a hell of a lot easier that breadboarding
  *  http://www.seeedstudio.com/wiki/GROVE_System
+ *
+ *  Notes:
+ *  - the clever bit is using "driver": ":firmata" which
+ *    forces IOTDB to bind the model to the Fimata Driver.
+ *    The Firmata*js examples in this folder are
+ *    a little simpler to to use
  */
 
 "use strict";
 
-var assert = require("assert")
 var iotdb = require("iotdb")
 
 exports.TAG_SWITCH = "switch"
@@ -33,62 +38,36 @@ exports.TAG_LED = "led"
 exports.TAG_LED_1 = "led_1"
 exports.TAG_LED_2 = "led_2"
 
-exports.make_iot = function() {
-    var iot = new iotdb.IOT({
-        load_drivers: true,
-        iotdb_device_get: false,
-        iotdb_device_create: false,
-        discover: false,
-        models_path: [
-            "$IOTDB_PROJECT/../iotdb-models/abstract"
-        ]
-    });
+exports.iot = iotdb.iot()
 
-    iot.on_register_things(exports.register_things)
-
-    return iot;
-}
-
-exports.register_things = function(iot) {
-    // make sure to do (for whatever your TTY is)
-    // iotdb-control set arduino_tty /dev/tty.usbmodem411
-    var arduino_tty = iot.cfg_get("arduino_tty")
-    assert.ok(arduino_tty && arduino_tty.length)
-
-    iot.discover({
+exports.iot
+    .connect({
         model: "abstract-value-unit",
-        driver_iri: ":firmata",
-        initd : {
-            tag: [ exports.TAG_LED, exports.TAG_LED_1 ],
-            api: arduino_tty,
-            pins: "value:pin=3,mode=analog-output"
-        },
+        driver: ":firmata",
+        pins: "value:pin=3,mode=analog-output"
     })
-    iot.discover({
+    .tag(exports.TAG_LED)
+    .tag(exports.TAG_LED_1)
+exports.iot
+    .connect({
         model: "abstract-value-unit",
-        driver_iri: ":firmata",
-        initd : {
-            tag: [ exports.TAG_LED, exports.TAG_LED_2 ],
-            api: arduino_tty,
-            pins: "value:pin=5,mode=analog-output"
-        },
+        driver: ":firmata",
+        pins: "value:pin=5,mode=analog-output"
     })
-    iot.discover({
+    .tag(exports.TAG_LED)
+    .tag(exports.TAG_LED_2)
+exports.iot
+    .connect({
         model: "abstract-value-unit",
-        driver_iri: ":firmata",
-        initd : {
-            tag: exports.TAG_POTENTIOMETER,
-            api: arduino_tty,
-            pins: "value:pin=0,mode=analog-input"
-        },
+        driver: ":firmata",
+        pins: "value:pin=0,mode=analog-input"
     })
-    iot.discover({
+    .tag(exports.TAG_POTENTIOMETER)
+exports.iot
+    .connect({
         model: "abstract-value-boolean",
-        driver_iri: ":firmata",
-        initd : {
-            tag: exports.TAG_SWITCH,
-            api: arduino_tty,
-            pins: "value:pin=4,mode=digital-input"
-        },
+        driver: ":firmata",
+        pins: "value:pin=4,mode=digital-input"
     })
-}
+    .tag(exports.TAG_SWITCH)
+
