@@ -1,5 +1,5 @@
 /*
- *  FirmataChainableLED.js
+ *  FirmataChainableLED2.js
  *
  *  David Janes
  *  IOTDB
@@ -21,25 +21,22 @@
 var iotdb = require("iotdb")
 var iot = iotdb.iot()
 
-var temperature2color = function(temperature)  {
-    var normalized = Math.min(1, Math.max(0, ((25.0 - temperature) / 15.0)))
-
-    var c = new iotdb.libs.Color()
-    c.set_hsl(normalized, 1, 0.5)
-
-    return c.get_hex();
+var color = function(value)  {
+    return (new iotdb.libs.Color())
+        .set_hsl(value, 1, 0.5)
+        .get_hex();
 }
 
 var led = iot.connect({
     model: "FirmataChainableLED",
     pin: 7
 })
-var dht11 = iot.connect({
-    model: "FirmataDHT11",
-    pin: 2
+var pot = iot.connect({
+    model: "FirmataInputUnit",
+    pin: 0
 })
 
-dht11
-    .on(':temperature', function(thing, attribute, value) {
-        led.set(":color", temperature2color(value))
+pot
+    .on(':value', function(thing, attribute, value) {
+        led.set(":color", color(value))
     })
