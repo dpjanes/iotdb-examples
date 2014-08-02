@@ -20,8 +20,8 @@ var HueLight = require("../iotdb-models/ots/HueLight").Model;
 var iot = new iotdb.IOT({
     load_models: false,
     load_drivers: true,
-    iotdb_device_get: false,
-    iotdb_device_create: false,
+    iotdb_thing_get: false,
+    iotdb_thing_create: false,
     discover: false
 });
 

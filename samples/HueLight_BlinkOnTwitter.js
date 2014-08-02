@@ -23,8 +23,8 @@ var iot = new iotdb.IOT({
     ],
     load_models: true,
     load_drivers: true,
-    iotdb_device_get: false,
-    iotdb_device_create: false,
+    iotdb_thing_get: false,
+    iotdb_thing_create: false,
     twitter: true,
     discover: false
 });

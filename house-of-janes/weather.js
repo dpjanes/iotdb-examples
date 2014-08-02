@@ -19,24 +19,6 @@ var globald = common.globald
  */
 var last_weather = null
 
-var weather_rss = iot.cfg_get("weather_rss")
-if (!weather_rss) {
-    console.log("# no 'weather_rss' defined")
-    console.log("  find your feed here: http://past.theweathernetwork.com/rss/")
-    console.log("  save with: iotdb-control set weather_rss <the-url>")
-    console.log()
-}
-
-iot.on_register_things(function() {
-    iot.discover({
-        model: "TWNCurrentWeather",
-        initd: {
-            api: weather_rss,
-            fresh: false
-        }
-    })
-})
-
 var on_weather = function(weather, attributes) {
     if (last_weather != null) {
         var last = last_weather.get("conditions")
@@ -58,6 +40,10 @@ var on_weather = function(weather, attributes) {
     last_weather = weather.freeze()
 }
 
-iot.on_thing_with_model("TWNCurrentWeather", function(iot, thing) {
-    thing.on_change(on_weather)
-})
+iot
+    .connect({
+        model: "TWNCurrentWeather",
+        iri: '{{ cfg.weather_rss }}',
+        fresh: false
+    })
+    .on_change(on_weather)

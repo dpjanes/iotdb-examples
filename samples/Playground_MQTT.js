@@ -32,8 +32,8 @@ var MQTTLight = iotdb.make_model('MQTTLight')
 var iot = new iotdb.IOT({
     load_drivers: true,
     load_models: false,
-    iotdb_device_get: false,
-    iotdb_device_create: false,
+    iotdb_thing_get: false,
+    iotdb_thing_create: false,
     discover: false
 });
 

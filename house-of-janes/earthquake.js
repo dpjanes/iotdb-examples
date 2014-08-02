@@ -15,15 +15,6 @@ var iot = common.iot
 var globald = common.globald
 var shared = common.shared
 
-iot.on_register_things(function() {
-    iot.discover({
-        model: "USGSEarthquake",
-        initd: {
-            fresh: true
-        }
-    })
-})
-
 var points2distance = function (lat1, lon1, lat2, lon2) {
     var R = 6371
     var dLat = (lat2-lat1)
@@ -64,6 +55,9 @@ var on_earthquake = function(earthquake) {
     console.log("+ changes!", earthquake.stated, message)
 }
 
-iot.on_thing_with_model("USGSEarthquake", function(iot, thing) {
-    thing.on_change(on_earthquake)
-})
+iot
+    .connect({
+        model: "USGSEarthquake",
+        fresh: true
+    })
+    .on_change(on_earthquake)

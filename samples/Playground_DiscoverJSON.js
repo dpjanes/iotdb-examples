@@ -28,8 +28,8 @@ var iot = new iotdb.IOT({
     models_path: [
         "$IOTDB_PROJECT/../iotdb-models/abstract"
     ],
-    iotdb_device_get: true,
-    iotdb_device_create: true,
+    iotdb_thing_get: true,
+    iotdb_thing_create: true,
     discover: false
 });
 iot.on_register_things(function(iot) {

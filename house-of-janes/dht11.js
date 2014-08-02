@@ -5,35 +5,14 @@
  *  IOTDB
  *  2014-05-04
  *
- *  DHT11 / Firmata controlled devices
+ *  DHT11 / Firmata controlled devices.
+ *  Use Digital Pin 2
  */
 
 "use strict";
 
 var common = require("./common")
 var iot = common.iot
-var globald = common.globald
-var shared = common.shared
-
-var PIN_DHT11 = 2
-
-var arduino_tty = iot.cfg_get("arduino_tty")
-if (!arduino_tty) {
-    console.log("# no 'arduino_tty' defined")
-    console.log("  save with: iotdb-control set arduino_tty /dev/your-tty")
-    console.log()
-} else {
-    iot.on_register_things(function() {
-        iot.discover({
-            model: "FirmataDHT11",
-            driver: ":firmata",
-            initd : {
-                pin: PIN_DHT11,
-                api: arduino_tty
-            },
-        })
-    })
-}
 
 var last_temperature = null
 var on_temperature = function(thing, attribute, current_temperature) {
@@ -66,7 +45,11 @@ var on_humidity = function(thing, attribute, current_humidity) {
     }
 }
 
-iot.on_thing_with_model("FirmataDHT11", function(iot, thing) {
-    thing.on('temperature', on_temperature)
-    thing.on('humidity', on_humidity)
-})
+iot
+    .connect({
+        model: "FirmataDHT11",
+        pin: 2,
+    })
+    .on('temperature', on_temperature)
+    .on('humidity', on_humidity)
+
