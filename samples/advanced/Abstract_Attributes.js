@@ -5,14 +5,22 @@
  *  IOTDB
  *  2013-12-26
  *
- *  Test:
+ *  Demonstrate:
  *  - different ways of setting attributes
- *  - creating things directly wired to a driver
+ *  - creating things without a driver (you almost never want to do this)
+ *  - on ready
  */
 
 "use strict"
 
 var iotdb = require("iotdb")
+
+var iot = iotdb.iot({
+    load_models: false,
+    load_drivers: true,
+    iotdb_thing_get: false,
+    iotdb_thing_create: false,
+});
 
 /*
  *  Note the use of code 'powered' rather than
@@ -24,13 +32,6 @@ var AbstractThing = iotdb.make_model('AbstractThing')
     )
     .make()
 
-var iot = new iotdb.IOT({
-    load_models: false,
-    load_drivers: true,
-    iotdb_thing_get: false,
-    iotdb_thing_create: false,
-    discover: false
-});
 
 iot.on_ready(function(iot) {
     console.log("+ starting tests")
@@ -69,5 +70,6 @@ iot.on_ready(function(iot) {
         .end();
 
     console.log("+ finished tests")
+    process.exit(0)
 })
 
