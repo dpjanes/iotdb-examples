@@ -40,6 +40,6 @@ var dht11 = iot.connect({
 })
 
 dht11
-    .on(':temperature', function(thing, attribute, value) {
+    .on(':sensor.temperature', function(thing, attribute, value) {
         led.set(":color", temperature2color(value))
     })

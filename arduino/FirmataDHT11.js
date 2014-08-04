@@ -22,9 +22,9 @@ var iotdb = require("iotdb")
 iotdb
     .iot()
     .connect("FirmataDHT11")
-    .on(':temperature', function(thing, attribute, value) {
+    .on(':sensor.temperature', function(thing, attribute, value) {
         console.log("+ temperature (C)", value)
     })
-    .on(':humidity', function(thing, attribute, value) {
+    .on(':sensor.humidity', function(thing, attribute, value) {
         console.log("+ humidity", value)
     })
