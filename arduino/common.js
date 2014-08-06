@@ -42,7 +42,7 @@ exports.iot = iotdb.iot()
 
 exports.iot
     .connect({
-        model: "abstract-value-unit",
+        model: "value-unit",
         driver: ":firmata",
         pins: "value:pin=3,mode=analog-output"
     })
@@ -50,7 +50,7 @@ exports.iot
     .tag(exports.TAG_LED_1)
 exports.iot
     .connect({
-        model: "abstract-value-unit",
+        model: "value-unit",
         driver: ":firmata",
         pins: "value:pin=5,mode=analog-output"
     })
@@ -58,14 +58,14 @@ exports.iot
     .tag(exports.TAG_LED_2)
 exports.iot
     .connect({
-        model: "abstract-value-unit",
+        model: "value-unit",
         driver: ":firmata",
         pins: "value:pin=0,mode=analog-input"
     })
     .tag(exports.TAG_POTENTIOMETER)
 exports.iot
     .connect({
-        model: "abstract-value-boolean",
+        model: "value-boolean",
         driver: ":firmata",
         pins: "value:pin=4,mode=digital-input"
     })

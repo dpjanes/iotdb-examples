@@ -23,7 +23,7 @@ iot.on_things(function(things) {
  *  Connect to a thing with a Model
  */
 var bedroom_light = iot.connect({
-    model: "abstract-light-simple",
+    model: "light",
     iri: "http://playground-home.iotdb.org/bedroom/light"
 })
 bedroom_light.set(':on', true)

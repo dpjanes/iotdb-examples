@@ -15,7 +15,7 @@ var iot = iotdb.iot()
  */
 var lights = iot
     .connect({
-        model: "abstract-light-color",
+        model: "light-color",
         iri: "http://playground-home.iotdb.org/basement/hue/1"
     })
     .on_change(function(thing) {
