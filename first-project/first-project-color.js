@@ -14,10 +14,13 @@ var iot = iotdb.iot()
  *  Connect to a light simulator
  */
 var lights = iot
+    .connect("HueLight")
+    /*
     .connect({
         model: "light-color",
         iri: "http://playground-home.iotdb.org/basement/hue/1"
     })
+    */
     .on_change(function(thing) {
         console.log("+ thing.state", thing.state())
     })
