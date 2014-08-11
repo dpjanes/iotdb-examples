@@ -9,11 +9,11 @@
  *  Set the brightness of the light to 0.5
  */
 
-"us strict"
+"use strict"
 
-iotdb = require('iotdb')
-iot = iotdb.iot()
+var iotdb = require('iotdb')
+var iot = iotdb.iot()
 
-things = iot
+var things = iot
     .connect('TCPConnectedLight')
     .set(':brightness', process.argv.length == 3 ? parseInt(process.argv[2]) / 10.0 : 0.5)
