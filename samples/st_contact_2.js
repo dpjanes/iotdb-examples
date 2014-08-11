@@ -18,6 +18,6 @@ var iot = iotdb.iot()
 var contacts = iot.connect("SmartThingsContact")
 var lights = iot.connect("HueLight")
 
-contacts.on_change(function(thing) {
-    lights.set(':color', thing.get(':open') ? 'red' : 'green')
+contacts.on(':open', function(thing, open_attribute, is_open) {
+    lights.set(':color', is_open ? 'red' : 'green')
 })
