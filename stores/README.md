@@ -1,4 +1,4 @@
-== Data Stores
+## Data Stores
 
 Data Stores are places where you can
 send sensor data, i.e. changes to your Things.
@@ -17,7 +17,7 @@ If you do have to do a manually step, the
 appropriate commands on how to do this will be listed on the
 command line.
 
-=== Dweet.io
+### Dweet.io
 
 Node-IOTDB can automatically create and maintain [dweet.io](http://dweet.io)
 stores.
@@ -25,7 +25,7 @@ stores.
 Example:
 http://dweet.io/follow/smart-things-three-axis:d28141d0c23c31e8065bb0df77e20c25
 
-=== ThingSpeak
+### ThingSpeak
 
 Node-IOTDB cannot create ThingSpeak channels, though it can configure
 the channel once it's configured.
@@ -35,7 +35,7 @@ Because ThingSpeak is an open source project, you can run
 your own server.
 If you need Node-IOTDB updated for this, let us know.
 
-=== Phant / data.sparkfun.org
+### Phant / data.sparkfun.org
 
 Phant is the data engine behind http://data.sparkfun.org. 
 
