@@ -26,6 +26,15 @@ Example:
 http://dweet.io/follow/smart-things-three-axis:d28141d0c23c31e8065bb0df77e20c25
 
 === ThingSpeak
+
+Node-IOTDB cannot create ThingSpeak channels, though it can configure
+the channel once it's configured.
+
+Right now we can only talk to the ThinkSpeak server. 
+Because ThingSpeak is an open source project, you can run
+your own server.
+If you need Node-IOTDB updated for this, let us know.
+
 === Phant / data.sparkfun.org
 
 Phant is the data engine behind http://data.sparkfun.org. 
