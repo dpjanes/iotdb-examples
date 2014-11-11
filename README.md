@@ -37,6 +37,5 @@ with IOTDB, as everything is very simple
 
 ### stores
 Node-IOTDB can very easily upload data to data stores,
-such as Phant, data.sparkfun.com, ThingSpeak and
-soon Xively and Zatar.
-These are examples
+such as Phant, data.sparkfun.com, ThingSpeak, MQTT and PubSub.
+More coming.
