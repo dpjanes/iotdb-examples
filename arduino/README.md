@@ -1,5 +1,14 @@
 # Setup
 
+Examples of using Node-IOTDB to control Arduinos
+using Firmata. We have our own slightly hacked version
+of Firmata in this project directory for 
+dealing with non-standard libraries.
+
+More documentation here:
+https://iotdb.org/docs/node/arduino
+https://iotdb.org/docs/node/firmata
+
 There's a number of simple setup steps that need to be done first.
 Also see the documentation (links below)
 

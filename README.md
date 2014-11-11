@@ -5,8 +5,10 @@ Getting started with IOTDB - examples
 See:
 
 [https://iotdb.org](iotdb.org)
-[https://iotdb.org/docs/node/getting-started](iotdb.org/docs/node/getting-started)
-
+and
+[https://iotdb.org/docs/node/getting-started](iotdb.org/docs/node/getting-started).
+Each of the folders in this project have their own
+README also with more details.
 
 ## Folders
 ### arduino

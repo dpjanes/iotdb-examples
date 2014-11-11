@@ -1,5 +1,12 @@
 # Setup
 
+Many examples of using Node-IOTDB to handle 
+events, etc.
+
+Make sure you're set up as per:
+
+https://iotdb.org/docs/node/getting-started
+
 ## OAuth
 
 Consider running this command so your Node-IOTDB
