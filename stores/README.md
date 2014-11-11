@@ -63,3 +63,39 @@ To do this:
 * **depending** on the server, you may have to 
   manually set things up. You will be given the info
   on the console
+
+### PubNub
+
+See our announcement 
+[here](https://iotdb.org/social/iotdb/post/101170263776/pubnub-integration-with-node-iotdb).
+
+Make sure you have an account on [PubNub](http://www.pubnub.com/).
+Go to the [Admin page](https://admin.pubnub.com/) and get a Publish Key and a Subscribe Key.
+
+Save them into IOTDB's keystore using the following commands:
+
+    iotdb-control --global set stores/pubnub/publish_key \
+        'pub-c-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+    iotdb-control --global set stores/pubnub/subscribe_key \
+        'pub-c-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+
+### MQTT
+
+See our announcement
+[here](https://iotdb.org/social/iotdb/post/102106617796/mqtt-store-integration-with-node-iotdb).
+
+There are a number of different ways to publish on topics, 
+covered at the link above.
+
+If you need a tool to look at what MQTT is doing, try
+[MQTT.fx](http://mqttfx.jfx4ee.org/).
+
+If you have your own MQTT server, use these commands to set up
+
+    $ iotdb --global set stores/mqtt/host <hostname>
+    $ iotdb --global set stores/mqtt/port <ip-address>
+
+Port defaults to 1883 but you **must** set the <code>stores/mqtt/host</code>.
+
+If you don't have your own MQTT server, you can use IOTDB's but make sure you have your topics prefixed by <code>/u/{{ username }}/</code> or it will stop working eventually.
+
