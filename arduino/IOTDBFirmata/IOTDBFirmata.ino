@@ -10,9 +10,10 @@
  */
 
 // #define USE_GCS              // groove color sensor
-#define USE_DHT                 // temperature/humidity sensor
-#define USE_TAC                 // three-axis compass
-#define USE_CLED       // chainable led
+// #define USE_DHT                 // temperature/humidity sensor
+// #define USE_TAC                 // three-axis compass
+// #define USE_CLED                // chainable led
+#define USE_NEOPIXEL            // AdaFruit NeoPixel (or similar, likely)
 
 /*
  * Firmata is a generic protocol for communicating with microcontrollers
@@ -68,6 +69,10 @@ String k_pin = "pin";
 #if defined(USE_CLED)
 #include <ChainableLED.h>
 #include "include_cled.h"
+#endif
+#if defined(USE_NEOPIXEL)
+#include <Adafruit_NeoPixel.h>
+#include "include_neopixel.h"
 #endif
 
 
@@ -553,6 +558,9 @@ void sysexCallback(byte command, byte argc, byte *argv)
 #if defined(USE_CLED)
         cled_sysex_callback(command, argc, argv);
 #endif
+#if defined(USE_NEOPIXEL)
+        neopixel_sysex_callback(command, argc, argv);
+#endif
         break;
   }
 }
@@ -649,6 +657,9 @@ void commandCallback(char *_command)
        if (extension_name == "cled") cled_enable();
        digitalWrite(3, HIGH);
 #endif
+#if defined(USE_NEOPIXEL)
+       if (extension_name == "neopixel") neopixel_enable();
+#endif
         extension_name = "";
     } else if (extension_name.length() == 0) {
         extension_name = command;
@@ -673,6 +684,9 @@ void commandCallback(char *_command)
 #if defined(USE_CLED)
        if (extension_name == "cled") cled_param(key, value);
 #endif
+#if defined(USE_NEOPIXEL)
+       if (extension_name == "neopixel") neopixel_param(key, value);
+#endif
     }
 }
 
@@ -689,6 +703,9 @@ void setup()
 #endif
 #if defined(USE_CLED)
     cled_setup();
+#endif
+#if defined(USE_NEOPIXEL)
+    neopixel_setup();
 #endif
 
   Firmata.setFirmwareVersion(FIRMATA_MAJOR_VERSION, FIRMATA_MINOR_VERSION);
@@ -757,5 +774,8 @@ void loop()
 #endif
 #if defined(USE_CLED)
     cled_loop();
+#endif
+#if defined(USE_NEOPIXEL)
+    neopixel_loop();
 #endif
 }
