@@ -54,6 +54,7 @@
 
 String k_sysex = "sysex";
 String k_pin = "pin";
+String k_n = "n";
 
 #if defined(USE_GCS)
 #include "include_gcs.h"

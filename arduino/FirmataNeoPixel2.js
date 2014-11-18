@@ -5,23 +5,30 @@
  *  IOTDB
  *  2014-11-15
  *
- *  Randomly select a color from all the ones we know about
+ *  Control the color of a NeoPixel using A0
  */
 
 "use strict";
 
 var iotdb = require("iotdb")
 var iot = iotdb.iot()
-var _ = iotdb.helpers;
 
-var led = iot.connect({
+var n = 16;
+var leds = iot.connect({
     model: "FirmataNeoPixel",
     pin: 6,
-    n: 16
+    n: n
+})
+var input = iot.connect({
+    model: "FirmataInputUnit",
+    pin: 0
 })
 
-var colors = _.keys(_.colord);
+var color = new iotdb.libs.Color()
 
-setInterval(function() {
-    led.set(":color", colors[Math.floor(Math.random() * colors.length)]);
-}, 1000)
+input.on(":value", function(thing, attribute, value) {
+    color.set_hsl(value, 1, 0.2)
+    leds
+        .set(":color", color.get_hex())
+        ;
+})

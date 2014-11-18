@@ -15,7 +15,11 @@ Adafruit_NeoPixel* neopixel_strip = 0;
 
 int neopixel_sysex = 0;
 int neopixel_pin = 6;
-int neopixel_nleds = 16;
+int neopixel_nleds = 4;
+int neopixel_queued = 0;
+unsigned long neopixel_next = 0;
+
+void neopixel_loop();
 
 void neopixel_param(String key, String value)
 {
@@ -23,8 +27,8 @@ void neopixel_param(String key, String value)
         neopixel_sysex = value.toInt();
     } else if (key == k_pin) {
         neopixel_pin = value.toInt();
-    } else if (key == "nleds") {
-        // neopixel_nleds = value.toInt();
+    } else if (key == k_n) {
+        neopixel_nleds = value.toInt();
     }
 }
 
@@ -61,7 +65,8 @@ void neopixel_sysex_callback(byte command, byte argc, byte *argv)
     uint16_t pin = (argc == 3) ? 0 : argv[3];
     
     neopixel_strip->setPixelColor(pin, color);
-    neopixel_strip->show();
+    neopixel_next = millis() + 20;
+    neopixel_queued++;
 }
 
 void neopixel_setup()
@@ -70,4 +75,9 @@ void neopixel_setup()
 
 void neopixel_loop()
 {
+    if ((neopixel_next > 0) && ((neopixel_queued > neopixel_nleds) || (neopixel_next < millis()))) {
+        neopixel_strip->show();
+        neopixel_next = 0;
+        neopixel_queued = 0;
+    }
 }
