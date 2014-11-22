@@ -10,7 +10,7 @@
  */
 
 // #define USE_GCS              // groove color sensor
-// #define USE_DHT                 // temperature/humidity sensor
+#define USE_DHT                 // temperature/humidity sensor
 // #define USE_TAC                 // three-axis compass
 // #define USE_CLED                // chainable led
 #define USE_NEOPIXEL            // AdaFruit NeoPixel (or similar, likely)
