@@ -23,6 +23,7 @@ var input = iot.connect({
     model: "FirmataInputUnit",
     pin: 0
 })
+input = input.transmogrify(iot.transmogrifier('debounce', { timeout: 50 }));
 
 var color = new iotdb.libs.Color()
 
