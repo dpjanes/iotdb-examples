@@ -9,8 +9,8 @@
 var iotdb = require('iotdb');
 
 var iot = iotdb.iot();
-var things = iot.connect();
 
-things
-    .with_facet(":lighting")
-    .set(':on', true);
+iot
+    .connect()
+    .with_name("Hue Lamp 2")
+    .set(':color', 'purple')

@@ -2,9 +2,6 @@
  *  David Janes
  *  IOTDB
  *  2014-11-21
- *
- *  Turn only lights on
- *  (note WeMo doesn't turn on)
  */
 
 "use strict";
@@ -15,5 +12,6 @@ var iot = iotdb.iot();
 
 iot
     .connect()
-    .with_facet(":device.lighting")
-    .set(':on', true);
+    .with_room("David Bedroom")
+    .with_floor("Second Floor")
+    .set(':color', 'green')

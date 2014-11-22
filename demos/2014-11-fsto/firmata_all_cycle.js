@@ -26,4 +26,4 @@ var ci = 0;
 
 setInterval(function() {
     things.set(":color", colors[ci++ % colors.length]);
-}, 1000)
+}, 2500)
