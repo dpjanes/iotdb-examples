@@ -1,5 +1,5 @@
 /*
- *  firmata_neopixel_cycle.js
+ *  firmata_cycle.js
  *
  *  David Janes
  *  IOTDB
