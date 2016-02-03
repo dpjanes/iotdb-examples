@@ -24,7 +24,7 @@ var iot = iotdb.iot()
 var lights = iot.connect("HueLight")
 
 setInterval(function() {
-    var color = _.choose(colors);
+    var color = _.random.choose(colors);
     console.log("+ set color", color)
     lights.set(':color', color)
 }, 2000)

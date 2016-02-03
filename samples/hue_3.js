@@ -26,7 +26,7 @@ var lights = iot.connect("HueLight")
 lights.on_thing(function(thing) {
     console.log("+ new thing")
     setInterval(function() {
-        var color = _.choose(colors);
+        var color = _.random.choose(colors);
         console.log("+ set color", color)
         thing.set(':color', color)
     }, 2000)
