@@ -23,7 +23,7 @@ iot.connect({
     pin: 3
 })
 
-var dimmers = iot.things().with_model("FirmataLightDimmer")
+var dimmers = iot.things().with_code("FirmataLightDimmer")
 
 var value = 0
 setInterval(function() {

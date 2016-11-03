@@ -19,7 +19,7 @@ var iotdb = require('iotdb')
  *  with arguments - it'll always do the "right" thing
  */
 var iot = iotdb.iot()
-iot.on_things(function(things) {
+iot.on("thing", (function(things) {
     iot.dump(things)
 })
 
@@ -33,7 +33,7 @@ var bedroom_light = iot.connect({
 bedroom_light.on_change(function(thing) {
     console.log("+ Thing changed", thing.stated)
 })
-bedroom_light.on_thing(function(thing) {
+bedroom_light.on("thing", function(thing) {
     console.log("+ new Thing")
     thing.set('on', !thing.get('on'))
 })

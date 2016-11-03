@@ -10,7 +10,7 @@
  *
  *  Demonstrates:
  *  - IOT.connect_model
- *  - ThingArray.on_thing
+ *  - ThingArray.on("thing", 
  */
 
 "use strict"
@@ -23,7 +23,7 @@ var colors = [ "white", "red", "blue", "green", "black" ]
 var iot = iotdb.iot()
 var lights = iot.connect("HueLight")
 
-lights.on_thing(function(thing) {
+lights.on("thing", function(thing) {
     console.log("+ new thing")
     setInterval(function() {
         var color = _.random.choose(colors);

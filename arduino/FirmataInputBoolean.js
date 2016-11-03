@@ -35,6 +35,6 @@ var input = iot.connect({
 input.on(":value", function(thing, attribute, value) {
     iot
         .things()
-        .with_model("FirmataLightDimmer")
+        .with_code("FirmataLightDimmer")
         .set(":brightness", value)
 })

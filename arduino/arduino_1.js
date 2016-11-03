@@ -17,7 +17,7 @@ var common = require("./common")
 common.iot
     .things()
     .with_tag(common.TAG_LED)
-    .on_thing(function(thing) {
+    .on("thing", function(thing) {
         var state = true;
         setInterval(function() {
             thing.set(':value', state)

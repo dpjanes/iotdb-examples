@@ -21,7 +21,7 @@ iotdb
     .iot()
     .connect("HueLight")
     .with_name("Hue Lamp 2")
-    .on_meta(function(thing) {
+    .on("meta", function(thing) {
         console.log("+ META changed", thing.meta().state())
     })
     .set(":color", process.argv.length == 3 ? process.argv[2] : "magenta")

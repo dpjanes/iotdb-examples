@@ -13,7 +13,7 @@ var iotdb = require('iotdb')
 
 iotdb
     .iot()
-    .on_things(function(things) {
+    .on("thing", (function(things) {
         iotdb.iot().dump(things)
     })
     .connect("WeMoSwitch")

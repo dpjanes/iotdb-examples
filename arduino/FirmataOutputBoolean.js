@@ -24,7 +24,7 @@ iotdb
         model: "FirmataOutputBoolean",
         pin: 3
     })
-    .on_thing(function(thing) {
+    .on("thing", function(thing) {
         var value = 0
         setInterval(function() {
             thing.set(':value', value++ % 2)

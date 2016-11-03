@@ -22,7 +22,7 @@ var iotdb = require("iotdb")
 iotdb
     .iot()
     .connect("FirmataOn")
-    .on_thing(function(thing) {
+    .on("thing", function(thing) {
         var value = 0
         setInterval(function() {
             thing.set(':on', value++ % 2)

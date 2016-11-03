@@ -12,7 +12,7 @@ var iotdb = require('iotdb')
 
 var iot = iotdb.iot()
 var wemos = iot.connect("WeMoSwitch")
-wemos.on_thing(function(wemo) {
+wemos.on("thing", function(wemo) {
     console.log("+ found wemo")
 })
 

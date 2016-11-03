@@ -32,6 +32,6 @@ input.on(":value", function(thing, attribute, value) {
     console.log("VALUE", value)
     iot
         .things()
-        .with_model("FirmataLightDimmer")
+        .with_code("FirmataLightDimmer")
         .set(":brightness", value)
 })

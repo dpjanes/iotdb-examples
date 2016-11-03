@@ -21,7 +21,7 @@ iot
         channel: "pgen",
         selector: "device",
     })
-    .on_thing(function(thing) {
+    .on("thing", function(thing) {
         console.log("+ thing", thing.thing_id());
     })
     .on_change(function(thing) {

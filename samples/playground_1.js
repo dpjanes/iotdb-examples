@@ -15,7 +15,7 @@ var iotdb = require('iotdb')
  *  with arguments - it'll always do the "right" thing
  */
 var iot = iotdb.iot()
-iot.on_things(function(things) {
+iot.on("thing", (function(things) {
     iot.dump(things)
 })
 
